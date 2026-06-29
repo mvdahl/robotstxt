@@ -1,0 +1,25 @@
+# modified version of https://www.rfc-editor.org/rfc/rfc9309.html#section-5.1
+# i believe this covers most if not all of what is specified,
+# including weird things found in the wild like spaces in product tokens
+
+Disallow: /dontdisallowthis
+
+User-Agent  : *
+            Disallow: *.gif$
+            Disallow: /example/
+            Allow: /publications/
+						Allow: /this/has/utf8/é/%C3%A9
+
+						# foobot begins here
+            User-Agent: bazbot
+						User-Agent: foobot # this is foobot
+            Disallow:/#random comment
+            Allow:/example/page.html
+            Allow:/example/allowed.gif
+
+<p>random invalid line that should be ignored</p>
+
+            User-Agent: bar bot
+            Disallow: /example/page.html
+
+            User-Agent: quxbot
